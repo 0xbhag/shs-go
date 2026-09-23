@@ -1,0 +1,137 @@
+# ==========================================
+# 🚫 NO IMAGES (Block all image assets)
+# ==========================================
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+*.ico
+*.bmp
+*.tiff
+*.tif
+*.heic
+*.avif
+*.raw
+*.psd
+*.ai
+*.eps
+**/images/
+**/img/
+**/assets/images/
+
+# ==========================================
+# ⚡ HTMX & Frontend Build Tools (Tailwind/JS)
+# ==========================================
+# Air live-reload temporary build folder (very common in Go+HTMX)
+tmp/
+.air/
+
+# Tailwind / PostCSS output & caches
+.turbo/
+.cache/
+*.min.css.map
+*.min.js.map
+
+# Node / JS Package Managers (if compiling assets for HTMX/Tailwind)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Static build artifacts (compiled CSS/JS)
+# Keep the static dir, but ignore generated bundles
+/static/dist/
+/static/build/
+/public/build/
+
+# Template engines (uncomment if you generate Go code from templates via 'a-h/templ')
+# *_templ.go
+# *_templ.txt
+
+# ==========================================
+# 🐹 Go Binaries and Build Artifacts
+# ==========================================
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary & coverage
+*.test
+*.out
+coverage.txt
+coverage.html
+profile.out
+
+# Go output directories
+/bin/
+/dist/
+/build/
+/out/
+
+# Go workspace files
+go.work
+go.work.sum
+
+# ==========================================
+# 🗄️ Local Databases (Common in Go+HTMX dev)
+# ==========================================
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# ==========================================
+# 🔒 Environment & Sensitive Information
+# ==========================================
+*.env
+*.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+
+# ==========================================
+# 💻 IDEs and Editors
+# ==========================================
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# GoLand / JetBrains
+.idea/
+*.iml
+
+# Vim / Sublime
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.sublime-project
+
+# ==========================================
+# 🖥️ Operating System Files
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*[tT][eE][sS][tT]*
+.air.toml
+bin/
+*.html
+input.css

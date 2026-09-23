@@ -1,0 +1,72 @@
+package templates 
+
+import "strconv"
+
+type FileItem struct {
+	Name string
+	Size int64
+}
+
+func formatBytes(b int64) string {
+	const unit = 1024
+	if b < unit {
+		return strconv.FormatInt(b, 10) + " B"
+	}
+
+	var value float64
+	var suffix string
+
+	switch {
+	case b < unit*unit:
+		value = float64(b) / unit
+		suffix = " KB"
+	case b < unit*unit*unit:
+		value = float64(b) / (unit * unit)
+		suffix = " MB"
+	case b < unit*unit*unit*unit:
+		value = float64(b) / (unit * unit * unit)
+		suffix = " GB"
+	default:
+		value = float64(b) / (unit * unit * unit * unit)
+		suffix = " TB"
+	}
+
+	buf := make([]byte, 0, 16)
+	buf = strconv.AppendFloat(buf, value, 'f', 1, 64)
+	buf = append(buf, suffix...)
+	return string(buf)
+}
+
+templ BaseLayout(title string, files []FileItem) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<title>{ title }</title>
+			<link rel="stylesheet" href="/static/css/output.css"/>
+		</head>
+		<body>
+			<div class="min-h-screen bg-white flex justify-center items-center">
+				<div class="w-full max-w-md h-screen md:h-screen bg-sky-100  shadow-2xl flex flex-col overflow-hidden relative">
+					<div class="flex w-full h-[100px] justify-center items-center text-xl font-bold">
+						HTTP File Sharing
+					</div>
+					<div class="flex-1 overflow-y-auto p-4 pt-0 space-y-3 touch-pan-y">
+						for _, file := range files {
+							<div class="flex items-center justify-between p-3 bg-white rounded-lg shadow-sm border border-sky-50">
+								<div class="flex flex-col min-w-0 pr-3">
+									<span class="font-medium text-gray-800 truncate text-sm">
+										{ file.Name }
+									</span>
+									<span class="text-xs text-gray-400 mt-0.5">
+										{ formatBytes(file.Size) }
+									</span>
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+		</body>
+	</html>
+}
