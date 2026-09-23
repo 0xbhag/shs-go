@@ -18,10 +18,12 @@ func (app *application) fileBrowserHandler(w http.ResponseWriter, r *http.Reques
 		if err != nil {
 			return
 		}
-		files = append(files, templates.FileItem{
-			Name: itemInfo.Name(),
-			Size: itemInfo.Size(),
-		})
+		if !itemInfo.IsDir() {
+			files = append(files, templates.FileItem{
+				Name: itemInfo.Name(),
+				Size: itemInfo.Size(),
+			})
+		}
 
 	}
 
