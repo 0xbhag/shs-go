@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -8,15 +9,8 @@ import (
 )
 
 func (app *application) fileBrowserHandler(w http.ResponseWriter, r *http.Request) {
-	homePath, err := os.UserHomeDir()
-	if err != nil {
 
-	}
-	dlPath := filepath.Join(homePath, "Downloads")
-	if _, err = os.Stat(dlPath); err != nil {
-		os.MkdirAll(dlPath, 0755)
-	}
-	dirFiles, _ := os.ReadDir(dlPath)
+	dirFiles, _ := os.ReadDir(app.DownloadPath)
 	var files []templates.FileItem
 
 	for _, item := range dirFiles {
@@ -33,4 +27,16 @@ func (app *application) fileBrowserHandler(w http.ResponseWriter, r *http.Reques
 
 	templates.BaseLayout("Home", files).Render(r.Context(), w)
 
+}
+
+func (app *application) fileDownloadHandler(w http.ResponseWriter, r *http.Request) {
+	filename := r.PathValue("filename")
+	safe_filename := filepath.Base(filename)
+	targetFilePath := filepath.Join(app.DownloadPath, safe_filename)
+	if _, err := os.Stat(targetFilePath); os.IsNotExist(err) {
+		http.Error(w, "File not found", http.StatusNotFound)
+		return
+	}
+	w.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=\"%s\"", safe_filename))
+	http.ServeFile(w, r, targetFilePath)
 }

@@ -12,7 +12,9 @@ type Page struct {
 	Title string
 	Body  []byte
 }
-type application struct{}
+type application struct {
+	DownloadPath string
+}
 
 func (p *Page) save() error {
 	filename := p.Title + ".txt"
@@ -32,7 +34,11 @@ func main() {
 	portFlag := flag.Int("port", 8080, "HTTP server port")
 	flag.Parse()
 	port := ":" + strconv.Itoa(*portFlag)
-	app := application{}
+	dlPath, err := setBrowserPath()
+	if err != nil {
+		return
+	}
+	app := application{DownloadPath: dlPath}
 
 	log.Fatal(http.ListenAndServe(port, app.routes()))
 }

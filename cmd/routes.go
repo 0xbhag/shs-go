@@ -11,5 +11,6 @@ func (app *application) routes() *http.ServeMux {
 	fmt.Printf("%+v", fileServer)
 	mux.Handle("GET /static/", http.StripPrefix("/static", fileServer))
 	mux.HandleFunc("GET /{$}", app.fileBrowserHandler)
+	mux.HandleFunc("GET /download/{filename}", app.fileDownloadHandler)
 	return mux
 }
