@@ -5,15 +5,12 @@ import (
 	"path/filepath"
 )
 
-func setBrowserPath() (string, error) {
-	homePath, err := os.UserHomeDir()
+func setBrowserPath(path *string) (string, error) {
+	absPath, _ := filepath.Abs(*path)
+	_, err := os.Stat(absPath)
 	if err != nil {
-
+		return "", nil
 	}
-	dlPath := filepath.Join(homePath, "Downloads")
-	if _, err = os.Stat(dlPath); err != nil {
-		os.MkdirAll(dlPath, 0755)
-	}
-	return dlPath, nil
+	return absPath, nil
 
 }

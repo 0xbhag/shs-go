@@ -32,11 +32,13 @@ func load_page(title string) (*Page, error) {
 
 func main() {
 	portFlag := flag.Int("port", 8080, "HTTP server port")
+	pathFlag := flag.String("path", ".", "Directory to start http server in.")
 	flag.Parse()
 	port := ":" + strconv.Itoa(*portFlag)
-	dlPath, err := setBrowserPath()
+	dlPath, err := setBrowserPath(pathFlag)
 	if err != nil {
-		return
+		log.Fatal("Input path has problems!")
+		os.Exit(1)
 	}
 	app := application{DownloadPath: dlPath}
 
