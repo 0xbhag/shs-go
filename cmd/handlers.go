@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"test/templates"
+	"shs/templates"
 )
 
 func (app *application) fileBrowserHandler(w http.ResponseWriter, r *http.Request) {
