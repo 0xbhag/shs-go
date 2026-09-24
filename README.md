@@ -2,10 +2,6 @@
 
 Yet another simple HTTP server written in Go.
 
-## About
-
-Built as a practice project to explore and learn Go's `net/http` package.
-
 ## Installation & Build
 
 Download a pre-built binary from the releases, or install/build from source:
@@ -48,3 +44,7 @@ go install -ldflags="-s -w" ./cmd/shs-go
 
 - [ ] File upload support (upload files directly to the shared directory)
 - [ ] Improved frontend UI design
+
+## Why bother?
+
+Built as a practice project to explore and learn Go's `net/http` package.
