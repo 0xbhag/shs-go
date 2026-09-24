@@ -2,7 +2,9 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"strconv"
@@ -42,5 +44,12 @@ func main() {
 	}
 	app := application{DownloadPath: dlPath}
 
-	log.Fatal(http.ListenAndServe(port, app.routes()))
+	listener, err := net.Listen("tcp", port)
+	if err != nil {
+		log.Fatalf("Failed to bind to port %s: %v", port, err)
+	}
+	fmt.Printf("SHS running on port %s\nShared directory : %s", port, dlPath)
+
+	// log.Fatal(http.ListenAndServe(port, app.routes()))
+	log.Fatal(http.Serve(listener, app.routes()))
 }

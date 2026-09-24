@@ -82,7 +82,7 @@ func BaseLayout(title string, files []FileItem) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</title><link rel=\"stylesheet\" href=\"/static/css/style.css\"><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.11/dist/htmx.min.js\" integrity=\"sha384-2OatzQy1H+Zd/IIrjr1TcuDGqLXeHhbooAyJY1KdQMKnr4LZ22k31GBLdYKHmVjg\" crossorigin=\"anonymous\"></script></head><body><div class=\"min-h-screen bg-white flex justify-center items-center\"><div class=\"w-full md:max-w-md h-screen bg-sky-100 md:shadow-2xl flex flex-col overflow-hidden relative\"><div class=\"flex w-full h-[100px] justify-center items-center text-xl font-bold text-gray-800\">HTTP File Sharing</div><div class=\"flex-1 overflow-y-auto p-4 pt-0 space-y-3 touch-pan-y\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</title><link rel=\"stylesheet\" href=\"/static/css/style.css\"></head><body><div class=\"min-h-screen bg-white flex justify-center items-center\"><div class=\"w-full md:max-w-md h-screen bg-sky-100 md:shadow-2xl flex flex-col overflow-hidden relative\"><div class=\"flex w-full h-[100px] justify-center items-center text-xl font-bold text-gray-800\">HTTP File Sharing</div><div class=\"flex-1 overflow-y-auto p-4 pt-0 space-y-3 touch-pan-y\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
